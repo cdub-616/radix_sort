@@ -19,8 +19,8 @@
  *    Adds a node to the tail of the linked list.                              *
  * void removeHead()                                                           *
  *    Removes the head node of the linked list and returns a String.           *
- * String peekHead()                                                           *
- *    Returns the value in the head node.                                      *
+ * SingleNode_Entry peekHead()                                                 *
+ *    Returns the Entry in the head node.                                      *
  * boolean contains(String)                                                    *
  *    Returns true if the value is contained within the linked list.           *
  * void print()                                                                *
@@ -62,6 +62,12 @@ public class SingleLinkedList_Entry {
          head = newNode;  //point head at new node
          tail = newNode;  //point tail at new node
       }
+      else if (head.key == "0" && head.value == "") {
+         head.key = key;
+         head.value = value;
+         head = newNode;
+         tail = newNode;
+      }
       else
          newNode.next = head;  //new node points to old head
          head = newNode;       //head points to new node
@@ -71,7 +77,13 @@ public class SingleLinkedList_Entry {
 	  SingleNode_Entry newNode = new SingleNode_Entry(key, value);
       if (isEmpty()) {    //if the list is empty
          head = newNode;  //point head at new node
-         tail = newNode;  //point tail at new node
+         tail = newNode;  //point tail at new node 
+      }
+      else if (head.key == "0" && head.value == "") {
+         tail.key = key;
+         tail.value = value;
+         head = newNode;
+         tail = newNode;
       }
       else
          tail.next = newNode;  //old tail points to new node
@@ -89,8 +101,8 @@ public class SingleLinkedList_Entry {
       return data;
    }
    
-   String peekHead() {
-      return head.value;
+   SingleNode_Entry peekHead() {
+      return head;
    }
    
    boolean contains(String value) {
