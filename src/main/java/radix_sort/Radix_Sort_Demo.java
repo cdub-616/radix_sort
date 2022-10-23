@@ -8,6 +8,8 @@
 
 package radix_sort;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -27,14 +29,16 @@ public class Radix_Sort_Demo {
       try {
          File file = new File(text);
          Scanner sc = new Scanner(file);
-   
+         
          numDigits = sc.nextInt();
-         while (sc.nextLine() != "END" && sc.hasNextLine()) {
-            StringTokenizer st = new StringTokenizer(sc.nextLine(),",");  
-            while (st.hasMoreTokens()) {  
+         
+         while (sc.hasNextLine()) {
+            
+            StringTokenizer st = new StringTokenizer(sc.nextLine(), ","); 
+            while (st.hasMoreTokens() && (st.countTokens() > 1)) { 
                String key = st.nextToken();
-               String value = st.nextToken();  
-               unsorted.addTail(key,  value);
+               String value = st.nextToken(); 
+               unsorted.addTail(key, value);
             }  
          }
          sc.close();
@@ -48,7 +52,7 @@ public class Radix_Sort_Demo {
 
    public static void main(String[] args) {
    
-   SingleLinkedList_Entry list = createList(stooges);
+   SingleLinkedList_Entry list = createList(areacode);
    Radix_Sort unsorted = new Radix_Sort(list, numDigits);
    
    SingleLinkedList_Entry newList = unsorted.sortList();
