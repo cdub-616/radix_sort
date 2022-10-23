@@ -1,3 +1,11 @@
+/*******************************************************************************
+ *                              Radix_Sort_Demo                                *
+ * Chris Wright                                                                *
+ * Version 1.0.0  10/21/2022                                                   *
+ *                                                                             *
+ * This class demonstrates the Radix_Sort class                                *
+ ******************************************************************************/
+
 package radix_sort;
 import java.io.File;
 import java.util.Scanner;
@@ -5,19 +13,19 @@ import java.util.StringTokenizer;
 
 public class Radix_Sort_Demo {
 
-   static String years = "years.txt",
-                 pokemon = "pokemon.txt",
-                 stooges = "stooges.txt",
-                 areacode = "areacode.txt",
-                 zipcodes = "zipcodes.txt";
-   static int numDigits = 0;
+   public static String years = "years.txt",
+                        pokemon = "pokemon.txt",
+                        stooges = "stooges.txt",
+                        areacode = "areacode.txt",
+                        zipcodes = "zipcodes.txt";
+   public static int numDigits = 0;
 
-   static SingleLinkedList_Entry createList() {
+   public static SingleLinkedList_Entry createList(String text) {
    
       SingleLinkedList_Entry unsorted = new SingleLinkedList_Entry();
    
       try {
-         File file = new File(years);
+         File file = new File(text);
          Scanner sc = new Scanner(file);
    
          numDigits = sc.nextInt();
@@ -33,15 +41,18 @@ public class Radix_Sort_Demo {
       }
       catch(Exception e) {
          System.out.println("Unable to open file!");
+         System.out.println(e.toString());
       }
       return unsorted;
    }
 
    public static void main(String[] args) {
    
-   SingleLinkedList_Entry list = createList();
+   SingleLinkedList_Entry list = createList(stooges);
    Radix_Sort unsorted = new Radix_Sort(list, numDigits);
    
+   SingleLinkedList_Entry newList = unsorted.sortList();
+   newList.print();
    
    }
 }
