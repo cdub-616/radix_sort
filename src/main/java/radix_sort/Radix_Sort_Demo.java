@@ -34,13 +34,19 @@ public class Radix_Sort_Demo {
          
          while (sc.hasNextLine()) {
             
-            StringTokenizer st = new StringTokenizer(sc.nextLine(), ","); 
-            while (st.hasMoreTokens() && (st.countTokens() > 1)) { 
-               String key = st.nextToken();
-               String value = st.nextToken(); 
-               unsorted.addTail(key, value);
-            }  
+            //StringTokenizer st = new StringTokenizer(sc.nextLine(), ","); 
+            //while (st.hasMoreTokens() && (st.countTokens() > 1)) { 
+               //String key = st.nextToken();
+               //String value = st.nextToken(); 
+               //unsorted.addTail(key, value);
+            //}  
+         String test = "This is, \"fun!\"";
+         String[] token = test.split("\"");
+         for (String element: token) {
+            System.out.println(element);
          }
+         }
+         
          sc.close();
       }
       catch(Exception e) {
