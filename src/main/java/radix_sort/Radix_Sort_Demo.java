@@ -8,10 +8,10 @@
 
 package radix_sort;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 import java.util.Scanner;
-import java.util.StringTokenizer;
+//import java.util.StringTokenizer;
 
 public class Radix_Sort_Demo {
 
@@ -40,15 +40,22 @@ public class Radix_Sort_Demo {
                //String value = st.nextToken(); 
                //unsorted.addTail(key, value);
             //}  
-         String test = "This is, \"fun!\"";
-         String[] token = test.split("\"");
-         for (String element: token) {
-            System.out.println(element);
-         }
-         }
+         //String test = "This is, fun, maybe?";
+         //String[] token = test.split(",");
+         //for (String element: token) {
+         //   System.out.println(element);
+         //}
+         //}
+         String[] token = sc.nextLine().split(",");
+         String key = token[0];
+         System.out.println("key: " + key);
+         String value = token[1];
+         System.out.println("value: " + value);
+         unsorted.addTail(key, value);
          
          sc.close();
       }
+   }
       catch(Exception e) {
          System.out.println("Unable to open file!");
          System.out.println(e.toString());
