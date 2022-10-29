@@ -30,7 +30,7 @@ public class Radix_Sort_Demo {
          File file = new File(text);
          Scanner sc = new Scanner(file);
          
-         numDigits = sc.nextInt();
+         numDigits = Integer.parseInt(sc.nextLine());
          
          while (sc.hasNextLine()) {
             
@@ -46,15 +46,18 @@ public class Radix_Sort_Demo {
          //   System.out.println(element);
          //}
          //}
+         //System.out.println(sc.nextLine());
+         //System.out.println(sc.nextLine());
          String[] token = sc.nextLine().split(",");
+         //System.out.println("key: " + token[0] + " value: " + token[1]);
          String key = token[0];
-         System.out.println("key: " + key);
+         //System.out.println("key: " + key);
          String value = token[1];
-         System.out.println("value: " + value);
+         //System.out.println("value: " + value);
          unsorted.addTail(key, value);
-         
+         }
          sc.close();
-      }
+      
    }
       catch(Exception e) {
          System.out.println("Unable to open file!");
