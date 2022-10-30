@@ -5,25 +5,25 @@
  *                                                                             *
  * This class constructs a single linked list.                                 *
  *                                                                             *
- * SingleLinkedList_Entry()                                                    *
+ * public SingleLinkedList_Entry()                                             *
  *    default constructor                                                      *
- * SingleLinkedList_Entry(String)                                              *
+ * public SingleLinkedList_Entry(String, String)                               *
  *    constructor                                                              *
- * String about()                                                              *
+ * public String about()                                                       *
  *    Returns the author's name.                                               *
- * boolean isEmpty()                                                           *
+ * public boolean isEmpty()                                                    *
  *    Returns true if the linked list is empty.                                *
- * void addHead(String)                                                        *
+ * public void addHead(String, String)                                         *
  *    Adds a node to the head of the linked list.                              *
- * void addTail(String)                                                        *
+ * public void addTail(String, String)                                         *
  *    Adds a node to the tail of the linked list.                              *
- * void removeHead()                                                           *
+ * public void removeHead()                                                    *
  *    Removes the head node of the linked list and returns a String.           *
- * String peekHead()                                                           *
- *    Returns the value in the head node.                                      *
- * boolean contains(String)                                                    *
+ * public SingleNode_Entry peekHead()                                          *
+ *    Returns the Entry in the head node.                                      *
+ * public boolean contains(String)                                             *
  *    Returns true if the value is contained within the linked list.           *
- * void print()                                                                *
+ * public void print()                                                         *
  *    Prints the values held within the linked list.                           *
  ******************************************************************************/
 
@@ -31,77 +31,94 @@ package radix_sort;
 
 public class SingleLinkedList_Entry {
 
-   private SingleNode_Entry head,  //head node pointer
-                            tail;  //tail node pointer
-   
-   SingleLinkedList_Entry() {
-	  SingleNode_Entry node = new SingleNode_Entry();
-      head = node;  //point head at new node
-      tail = node;  //point tail at new node
+   public SingleNode_Entry head,  //head node pointer
+                           tail;  //tail node pointer
+ 
+   public SingleLinkedList_Entry() {
+	   SingleNode_Entry node = new SingleNode_Entry();
+      head = node;  //point head at node
+      tail = node;  //point tail at node
    }
    
-   SingleLinkedList_Entry(String key, String value) {
-	  SingleNode_Entry node = new SingleNode_Entry(key, value);
-      head = node;  //point head at new node
-      tail = node;  //point tail at new node
+   public SingleLinkedList_Entry(String key, String value) {
+	   SingleNode_Entry node = new SingleNode_Entry(key, value);
+      head = node;  //point head at node
+      tail = node;  //point tail at node
    }
 
-   String about() {
+   public String about() {
       return "Chris Wright";
    }
    
-   boolean isEmpty() {
-      if (head == null)  //if the list is empty
+   public boolean isEmpty() {//if the list doesn't exist or is empty
+      if (head == null || (head.getKey() == "0" && head.getValue() == ""))  
          return true;
       else return false;
    }
    
-   void addHead(String key, String value) {
-	  SingleNode_Entry newNode = new SingleNode_Entry(key, value);
-      if (isEmpty()) {    //if the list is empty
-         head = newNode;  //point head at new node
-         tail = newNode;  //point tail at new node
+   public void addHead(String key, String value) {
+	   SingleNode_Entry newNode = new SingleNode_Entry(key, value);
+      if (isEmpty()) {       
+         if (head != null)     //if the list is empty
+            head = null;       //delete old head
+         head = newNode;       //point head at newNode
       }
-      else
+      else {
          newNode.next = head;  //new node points to old head
-         head = newNode;       //head points to new node
-   }
-   
-   void addTail(String key, String value) {
-	  SingleNode_Entry newNode = new SingleNode_Entry(key, value);
-      if (isEmpty()) {    //if the list is empty
-         head = newNode;  //point head at new node
-         tail = newNode;  //point tail at new node
+         head = newNode;       //head points to newNode
       }
-      else
-         tail.next = newNode;  //old tail points to new node
-         tail = newNode;       //tail points to new node
    }
    
-   String removeHead() {
-      String data;
-      if (isEmpty()) {    //if the list is empty
+   public void addTail(String key, String value) {
+	   SingleNode_Entry newNode = new SingleNode_Entry(key, value);
+      if (isEmpty()) {    
+         if (head != null)     //if the list is empty
+            head = null;       //delete head
+         head = newNode;       //point head at newNode
+         tail = newNode;       //point tail at newNode
+      }
+      else {
+         tail.next = newNode;  //old tail points to newNode
+         tail = newNode;       //tail points to newNode
+      }   
+   }
+   
+   public String removeHead() {
+      String data;             //data of old head
+      if (isEmpty()) {         //if list is empty
          data = "";
+         head = null;
          tail = null;
       }
-      else data = head.value;
-      head = head.next;  //move head to next node
+      else {
+         data = head.getValue();    //data of old head
+         if (head.next != null) {
+            head = head.next;       //move head to next node
+         }
+         else {
+         head = null;
+         }
+      }
       return data;
    }
    
-   String peekHead() {
-      return head.value;
+   public SingleNode_Entry peekHead() {
+      return head;
    }
    
-   boolean contains(String value) {
+   public boolean contains(String value) {
       if (isEmpty())
          return false;
       else return head.contains(value);
    }
    
-   void print() {
+   public void print() {
+      SingleNode_Entry nodePtr = head;
       if (!isEmpty())
-         head.print();
+         while (nodePtr != null) {
+         nodePtr.print();
+         nodePtr = nodePtr.next;
+         }
       else System.out.println("");
    }
 }
