@@ -88,9 +88,9 @@ public class Radix_Sort_Demo {
    }
 
    public static Radix_Sort sortFile(String file) {
-      SingleLinkedList_Entry list = createList(file);
+      SingleLinkedList_Entry list = createList(file);  //create from file
       Radix_Sort unsorted = new Radix_Sort(list, numDigits);
-      unsorted.sortList().print();
+      unsorted.sortList().print();                     //sort and print
       return unsorted;
    }
 }

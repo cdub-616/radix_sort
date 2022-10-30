@@ -8,11 +8,7 @@
  * public SingleNode_Entry()                                                   *
  *    default constructor                                                      *
  * public SingleNode_Entry(String, String)                                     *
- *    constructor                                                              *
- * public String getKey()                                                      *
- *    returns data in key                                                      *
- * public String getValue()                                                    *
- *    returns data in value                                                    *                                            
+ *    constructor                                                              *                                         
  * public boolean contains(String)                                             *
  *    Uses an unnecessary recursive call to traverse a linked list.  Returns   *
  *    true if String is contained within linked list.                          *
@@ -24,42 +20,29 @@ package radix_sort;
 
 public class SingleNode_Entry {
 
-   public SingleNode_Entry next;   //next node in linked list
-   private String key,             //key of data in node
-                  value;           //value of data in node
+   public SingleNode_Entry next;      //next node in linked list
+   public Entry entry = new Entry();  //contains line of file
    
    public SingleNode_Entry() {
-      Entry entry = new Entry();
-      key = entry.getKey();
-      value = entry.getValue();
       this.next = null;
    }
    
    public SingleNode_Entry(String ky, String val){
-      Entry entry = new Entry(ky, val);
-      key = entry.getKey();
-      value = entry.getValue();
+      entry.key = ky;
+      entry.value = val;
       this.next = null;
    }
    
-   public String getKey() {
-      return this.key;
-   }
-   
-   public String getValue() {
-      return this.value;
-   }
-   
    public boolean contains(String val) {
-      if (this.value == val)              //if value is in node
+      if (entry.value == val)             //if value is in node
          return true;
       else if (this.next != null)         //if value isn't in node and there's
          return this.next.contains(val);  //  another node in linked list
-      else return false;                  //if value is in none of the nodes
+      else return false;                  //if value is in none of nodes
    }
    
    public void print() {
-      System.out.println("key: " + getKey());
-      System.out.println("value: " + getValue());
+      System.out.println("key: " + entry.key);
+      System.out.println("value: " + entry.value);
    }
 }

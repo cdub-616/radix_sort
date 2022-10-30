@@ -51,7 +51,7 @@ public class SingleLinkedList_Entry {
    }
    
    public boolean isEmpty() {//if the list doesn't exist or is empty
-      if (head == null || (head.getKey() == "0" && head.getValue() == ""))  
+      if (head == null || (head.entry.key == "0" && head.entry.value == ""))  
          return true;
       else return false;
    }
@@ -91,7 +91,7 @@ public class SingleLinkedList_Entry {
          tail = null;
       }
       else {
-         data = head.getValue();    //data of old head
+         data = head.entry.value;   //data of old head
          if (head.next != null) {
             head = head.next;       //move head to next node
          }
@@ -116,8 +116,8 @@ public class SingleLinkedList_Entry {
       SingleNode_Entry nodePtr = head;
       if (!isEmpty())
          while (nodePtr != null) {
-         nodePtr.print();
-         nodePtr = nodePtr.next;
+            nodePtr.print();
+            nodePtr = nodePtr.next;
          }
       else System.out.println("");
    }
