@@ -65,7 +65,7 @@ public class SingleLinkedList_Entry {
          head = newNode;       //point head at newNode
       }
       else {
-         newNode.next = head;  //new node points to old head
+         newNode.getNext() = head;  //new node points to old head
          head = newNode;       //head points to newNode
       }
    }

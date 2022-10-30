@@ -9,8 +9,6 @@
  *    default constructor                                                      *
  * public SingleNode_Entry(String, String)                                     *
  *    constructor                                                              *
- * public SingleNode_Entry getNext()                                           *
- *    returns next node                                                        *
  * public String getKey()                                                      *
  *    returns data in key                                                      *
  * public String getValue()                                                    *
@@ -19,8 +17,7 @@
  *    Uses an unnecessary recursive call to traverse a linked list.  Returns   *
  *    true if the String is contained within the linked list.                  *
  * public void print()                                                         *
- *    Uses an unnecessary recursive call to traverse a linked list and prints  *
- *    the value at each node.                                                  *
+ *    Traverses a linked list and prints the value at each node.               *                                           *
  ******************************************************************************/
 
 package radix_sort;
@@ -45,10 +42,6 @@ public class SingleNode_Entry {
       this.next = null;
    }
    
-   public SingleNode_Entry getNext() {
-      return this.next;
-   }
-   
    public String getKey() {
       return this.key;
    }
@@ -66,9 +59,11 @@ public class SingleNode_Entry {
    }
    
    public void print() {
-      System.out.println("key: " + this.key);
-      System.out.println("value: " + this.value);
-      if (this.next != null)  //if there's another node in linked list
-         this.next.print();   //print next one
+      SingleNode_Entry tempPtr = this;  //points at current node
+      while (tempPtr.next != null) {    //if there's another node
+         System.out.println("key: " + tempPtr.key);
+         System.out.println("value: " + tempPtr.value);
+         tempPtr = tempPtr.next;        //points to next node
+      }        
    }
 }

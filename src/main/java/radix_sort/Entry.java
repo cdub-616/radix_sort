@@ -18,7 +18,8 @@ package radix_sort;
 
 public class Entry {
 	
-   private String key, value;
+   private String key,    //used to sort data
+                  value;  //data associated with key
 	
    public Entry() {
       this.key = "0";

@@ -8,10 +8,7 @@
 
 package radix_sort;
 import java.io.File;
-//import java.util.ArrayList;
-//import java.util.List;
 import java.util.Scanner;
-//import java.util.StringTokenizer;
 
 public class Radix_Sort_Demo {
 
@@ -33,28 +30,17 @@ public class Radix_Sort_Demo {
          numDigits = Integer.parseInt(sc.nextLine());
          
          while (sc.hasNextLine()) {
-            
-            //StringTokenizer st = new StringTokenizer(sc.nextLine(), ","); 
-            //while (st.hasMoreTokens() && (st.countTokens() > 1)) { 
-               //String key = st.nextToken();
-               //String value = st.nextToken(); 
-               //unsorted.addTail(key, value);
-            //}  
-         //String test = "This is, fun, maybe?";
-         //String[] token = test.split(",");
-         //for (String element: token) {
-         //   System.out.println(element);
-         //}
-         //}
-         //System.out.println(sc.nextLine());
-         //System.out.println(sc.nextLine());
-         String[] token = sc.nextLine().split(",");
-         //System.out.println("key: " + token[0] + " value: " + token[1]);
-         String key = token[0];
-         //System.out.println("key: " + key);
-         String value = token[1];
-         //System.out.println("value: " + value);
-         unsorted.addTail(key, value);
+            String[] token = sc.nextLine().split(",");          
+            String key = token[0];   
+            if (token.length > 1) {
+               String value;
+               if (token.length > 2) {
+                  value = token[1] + "," + token[2];
+               }
+               else
+                  value = token[1];
+               unsorted.addTail(key, value);
+            }
          }
          sc.close();
       
@@ -68,7 +54,7 @@ public class Radix_Sort_Demo {
 
    public static void main(String[] args) {
    
-   SingleLinkedList_Entry list = createList(areacode);
+   SingleLinkedList_Entry list = createList(zipcodes);
    Radix_Sort unsorted = new Radix_Sort(list, numDigits);
    
    SingleLinkedList_Entry newList = unsorted.sortList();

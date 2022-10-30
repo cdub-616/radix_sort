@@ -81,7 +81,7 @@ public class Radix_Sort {
                          break;
             }
             unsorted.removeHead();
-         } //pour bucks back into linked list
+         } //pour buckets back into linked list
          SingleLinkedList_Entry sorted = new SingleLinkedList_Entry();
          while (!zeroesBucket.isEmpty()) {
             sorted.addTail(zeroesBucket.peekHead().getKey(), 
