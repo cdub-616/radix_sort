@@ -1,5 +1,5 @@
 /*******************************************************************************
- *                       class Node_Single                                     *
+ *                          class Node_Single                                  *
  * Chris Wright                                                                *
  * Version 1.0.0  10/21/2022                                                   *
  *                                                                             *
@@ -15,9 +15,9 @@
  *    returns data in value                                                    *                                            
  * public boolean contains(String)                                             *
  *    Uses an unnecessary recursive call to traverse a linked list.  Returns   *
- *    true if the String is contained within the linked list.                  *
+ *    true if String is contained within linked list.                          *
  * public void print()                                                         *
- *    Traverses a linked list and prints the value at each node.               *                                           *
+ *    Prints value at each node.                                               *                                           
  ******************************************************************************/
 
 package radix_sort;
@@ -25,8 +25,8 @@ package radix_sort;
 public class SingleNode_Entry {
 
    public SingleNode_Entry next;   //next node in linked list
-   private String key;             //key of data in node
-   private String value;           //value of data in node
+   private String key,             //key of data in node
+                  value;           //value of data in node
    
    public SingleNode_Entry() {
       Entry entry = new Entry();
@@ -59,11 +59,7 @@ public class SingleNode_Entry {
    }
    
    public void print() {
-      SingleNode_Entry tempPtr = this;  //points at current node
-      while (tempPtr.next != null) {    //if there's another node
-         System.out.println("key: " + tempPtr.key);
-         System.out.println("value: " + tempPtr.value);
-         tempPtr = tempPtr.next;        //points to next node
-      }        
+      System.out.println("key: " + getKey());
+      System.out.println("value: " + getValue());
    }
 }

@@ -11,6 +11,10 @@
  *    constructor                                                              *
  * public SingleLinkedList_Entry sortList()                                    *
  *    Sorts the linked list in ascending order.                                *
+ * public void emptyBuckets(SingleLinkedList_Entry)                            *
+ *    Puts contents of buckets back into linked list.                          *
+ * public int numberSorted()                                                   *
+ *    Returns number of lines sorted.                                          *
  ******************************************************************************/
 
 package radix_sort;
@@ -18,10 +22,11 @@ package radix_sort;
 public class Radix_Sort {
 
    private SingleLinkedList_Entry unsorted = new SingleLinkedList_Entry();
-           int numDigits = 0;
+   private int numDigits,  //number of digits in key
+               numSorted;  //number of lines sorted
 
    public Radix_Sort() {
-      SingleLinkedList_Entry unsorted = new SingleLinkedList_Entry();
+      numDigits = 0;
    }
    
    public Radix_Sort(SingleLinkedList_Entry unsort, int numDig) {
@@ -30,7 +35,8 @@ public class Radix_Sort {
    }
    
    public SingleLinkedList_Entry sortList() {
-      while (numDigits != 0) {
+
+      //create buckets
       SingleLinkedList_Entry zeroesBucket = new SingleLinkedList_Entry();
       SingleLinkedList_Entry onesBucket = new SingleLinkedList_Entry();
       SingleLinkedList_Entry twosBucket = new SingleLinkedList_Entry();
@@ -41,6 +47,8 @@ public class Radix_Sort {
       SingleLinkedList_Entry sevensBucket = new SingleLinkedList_Entry();
       SingleLinkedList_Entry eightsBucket = new SingleLinkedList_Entry();
       SingleLinkedList_Entry ninesBucket = new SingleLinkedList_Entry();
+
+      while (numDigits != 0) {  
          while (!unsorted.isEmpty()) {
             String pKey = unsorted.peekHead().getKey(); 
             int[] number = new int[pKey.length()];     //convert key to array
@@ -48,7 +56,9 @@ public class Radix_Sort {
                number[i] = pKey.charAt(i) - '0';
             }
             int value = number[numDigits - 1];
-            switch(value) { //empty the data into buckets by key
+
+            //empty data into buckets by key
+            switch(value) {  
                case 0:  zeroesBucket.addTail(unsorted.peekHead().getKey(), 
                            unsorted.peekHead().getValue());
                         break;
@@ -78,76 +88,56 @@ public class Radix_Sort {
                         break;
                default:  ninesBucket.addTail(unsorted.peekHead().getKey(), 
                             unsorted.peekHead().getValue());   
-                         break;
+                        break;
             }
-            unsorted.removeHead();
-         } //pour buckets back into linked list
-         SingleLinkedList_Entry sorted = new SingleLinkedList_Entry();
-         while (!zeroesBucket.isEmpty()) {
-            sorted.addTail(zeroesBucket.peekHead().getKey(), 
-               zeroesBucket.peekHead().getValue());
-            zeroesBucket.removeHead();
-         }
-         while (!onesBucket.isEmpty()) {
-         sorted.addTail(onesBucket.peekHead().getKey(), 
-            onesBucket.peekHead().getValue());
-         onesBucket.removeHead();
+            unsorted.removeHead();  //remove head after sorting into bucket
+         } 
+
+         //pour buckets back into linked list
+         emptyBuckets(zeroesBucket);
+         emptyBuckets(onesBucket);
+         emptyBuckets(twosBucket);
+         emptyBuckets(threesBucket);
+         emptyBuckets(foursBucket);
+         emptyBuckets(fivesBucket);
+         emptyBuckets(sixesBucket);
+         emptyBuckets(sevensBucket);
+         emptyBuckets(eightsBucket);
+         emptyBuckets(ninesBucket);
+         numDigits--;        //decrement number of times to sort buckets
+         sortList();         //recursive call
       }
-         while (!twosBucket.isEmpty()) {
-         sorted.addTail(twosBucket.peekHead().getKey(), 
-            twosBucket.peekHead().getValue());
-         twosBucket.removeHead();
-      }
-         while (!threesBucket.isEmpty()) {
-         sorted.addTail(threesBucket.peekHead().getKey(), 
-            threesBucket.peekHead().getValue());
-         threesBucket.removeHead();
-      }
-         while (!foursBucket.isEmpty()) {
-         sorted.addTail(foursBucket.peekHead().getKey(), 
-            foursBucket.peekHead().getValue());
-         foursBucket.removeHead();
-      }
-         while (!fivesBucket.isEmpty()) {
-         sorted.addTail(fivesBucket.peekHead().getKey(), 
-            fivesBucket.peekHead().getValue());
-         fivesBucket.removeHead();
-      }
-         while (!sixesBucket.isEmpty()) {
-         sorted.addTail(sixesBucket.peekHead().getKey(), 
-            sixesBucket.peekHead().getValue());
-         sixesBucket.removeHead();
-      }
-         while (!sevensBucket.isEmpty()) {
-         sorted.addTail(sevensBucket.peekHead().getKey(), 
-            sevensBucket.peekHead().getValue());
-         sevensBucket.removeHead();
-      }
-         while (!eightsBucket.isEmpty()) {
-         sorted.addTail(eightsBucket.peekHead().getKey(), 
-            eightsBucket.peekHead().getValue());
-         eightsBucket.removeHead();
-      }
-         while (!ninesBucket.isEmpty()) {
-         sorted.addTail(ninesBucket.peekHead().getKey(), 
-            ninesBucket.peekHead().getValue());
-         ninesBucket.removeHead();
-      }
-         zeroesBucket = null;  //delete buckets
-         onesBucket = null;
-         twosBucket = null;
-         threesBucket = null;
-         foursBucket = null;
-         fivesBucket = null;
-         sixesBucket = null;
-         sevensBucket = null;
-         eightsBucket = null;
-         ninesBucket = null;
-         unsorted = sorted;   //point unsorted at new linked list
-         sorted = null;       //delete sorted
-         numDigits--;
-         sortList();          //recursive call with one less digit to sort
-      }
+      zeroesBucket = null;  //delete buckets
+      onesBucket = null;
+      twosBucket = null;
+      threesBucket = null;
+      foursBucket = null;
+      fivesBucket = null;
+      sixesBucket = null;
+      sevensBucket = null;
+      eightsBucket = null;
+      ninesBucket = null;
       return unsorted;
+   }
+
+   public void emptyBuckets(SingleLinkedList_Entry ent) {
+      while (!ent.isEmpty()) {
+         unsorted.addTail(ent.peekHead().getKey(), 
+            ent.peekHead().getValue());
+         ent.removeHead();
+      }
+   }
+
+   public int numberSorted() {
+      numSorted = 0;
+      SingleNode_Entry nodePtr = unsorted.head;
+      if (nodePtr != null) {
+         numSorted = 1;
+         while (nodePtr.next != null) {
+            numSorted++;
+            nodePtr = nodePtr.next;
+         }
+      }
+      return numSorted;
    }
 }

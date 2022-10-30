@@ -1,9 +1,9 @@
 /*******************************************************************************
- *                       class Entry                                           *
+ *                               class Entry                                   *
  * Chris Wright                                                                *
  * Version 1.0.0  10/21/2022                                                   *
  *                                                                             *
- * This class constructs an Entry class containing two Strings                 *
+ * This class constructs an Entry class containing two Strings.                *
  *                                                                             *
  * public Entry()                                                              *
  *    default constructor                                                      *

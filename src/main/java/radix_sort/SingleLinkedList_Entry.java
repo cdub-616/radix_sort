@@ -35,13 +35,13 @@ public class SingleLinkedList_Entry {
                            tail;  //tail node pointer
  
    public SingleLinkedList_Entry() {
-	  SingleNode_Entry node = new SingleNode_Entry();
+	   SingleNode_Entry node = new SingleNode_Entry();
       head = node;  //point head at node
       tail = node;  //point tail at node
    }
    
    public SingleLinkedList_Entry(String key, String value) {
-	  SingleNode_Entry node = new SingleNode_Entry(key, value);
+	   SingleNode_Entry node = new SingleNode_Entry(key, value);
       head = node;  //point head at node
       tail = node;  //point tail at node
    }
@@ -57,25 +57,23 @@ public class SingleLinkedList_Entry {
    }
    
    public void addHead(String key, String value) {
-	  SingleNode_Entry newNode = new SingleNode_Entry(key, value);
+	   SingleNode_Entry newNode = new SingleNode_Entry(key, value);
       if (isEmpty()) {       
-         if (head != null) {   //if the list is empty
+         if (head != null)     //if the list is empty
             head = null;       //delete old head
-         }
          head = newNode;       //point head at newNode
       }
       else {
-         newNode.getNext() = head;  //new node points to old head
+         newNode.next = head;  //new node points to old head
          head = newNode;       //head points to newNode
       }
    }
    
    public void addTail(String key, String value) {
-	  SingleNode_Entry newNode = new SingleNode_Entry(key, value);
+	   SingleNode_Entry newNode = new SingleNode_Entry(key, value);
       if (isEmpty()) {    
-         if (head != null) {   //if the list is empty
-         head = null;          //delete head
-         }
+         if (head != null)     //if the list is empty
+            head = null;       //delete head
          head = newNode;       //point head at newNode
          tail = newNode;       //point tail at newNode
       }
@@ -86,8 +84,8 @@ public class SingleLinkedList_Entry {
    }
    
    public String removeHead() {
-      String data;
-      if (isEmpty()) {         //if the list is empty
+      String data;             //data of old head
+      if (isEmpty()) {         //if list is empty
          data = "";
          head = null;
          tail = null;
@@ -95,7 +93,7 @@ public class SingleLinkedList_Entry {
       else {
          data = head.getValue();    //data of old head
          if (head.next != null) {
-            head = head.next;  //move head to next node
+            head = head.next;       //move head to next node
          }
          else {
          head = null;
@@ -115,8 +113,12 @@ public class SingleLinkedList_Entry {
    }
    
    public void print() {
+      SingleNode_Entry nodePtr = head;
       if (!isEmpty())
-         head.print();
+         while (nodePtr != null) {
+         nodePtr.print();
+         nodePtr = nodePtr.next;
+         }
       else System.out.println("");
    }
 }
