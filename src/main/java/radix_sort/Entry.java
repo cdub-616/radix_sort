@@ -9,17 +9,13 @@
  *    default constructor                                                      *
  * public Entry(String, String)                                                *
  *    constructor                                                              *
- * public String getKey()                                                      *
- *    returns data in key                                                      *
- * public String getValue()                                                    *
- *    returns data in value                                                    *
  ******************************************************************************/
 package radix_sort;
 
 public class Entry {
 	
-   private String key,    //used to sort data
-                  value;  //data associated with key
+   public String key,    //used to sort data
+                 value;  //data associated with key
 	
    public Entry() {
       this.key = "0";
@@ -30,12 +26,4 @@ public class Entry {
       this.key = ky;
       this.value = val;
    }
-   
-   public String getKey() {
-      return this.key;
-   }
-   
-   public String getValue() {
-      return this.value;
-   }
- }
+}

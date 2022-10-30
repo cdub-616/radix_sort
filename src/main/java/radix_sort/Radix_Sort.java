@@ -50,44 +50,44 @@ public class Radix_Sort {
 
       while (numDigits != 0) {  
          while (!unsorted.isEmpty()) {
-            String pKey = unsorted.peekHead().getKey(); 
+            String pKey = unsorted.peekHead().entry.key; 
             int[] number = new int[pKey.length()];     //convert key to array
-            for (int i = 0; i < number.length; i++) {  // of ints
-               number[i] = pKey.charAt(i) - '0';
+            for (int i = 0; i < number.length; i++) {  
+               number[i] = pKey.charAt(i) - '0';       //convert to int
             }
-            int value = number[numDigits - 1];
+            int value = number[numDigits - 1];  //int in key used for sort
 
             //empty data into buckets by key
             switch(value) {  
-               case 0:  zeroesBucket.addTail(unsorted.peekHead().getKey(), 
-                           unsorted.peekHead().getValue());
+               case 0:  zeroesBucket.addTail(unsorted.peekHead().entry.key, 
+                           unsorted.peekHead().entry.value);
                         break;
-               case 1:  onesBucket.addTail(unsorted.peekHead().getKey(), 
-                           unsorted.peekHead().getValue());
+               case 1:  onesBucket.addTail(unsorted.peekHead().entry.key, 
+                           unsorted.peekHead().entry.value);
                         break;
-               case 2:  twosBucket.addTail(unsorted.peekHead().getKey(), 
-                           unsorted.peekHead().getValue());
+               case 2:  twosBucket.addTail(unsorted.peekHead().entry.key, 
+                           unsorted.peekHead().entry.value);
                         break;
-               case 3:  threesBucket.addTail(unsorted.peekHead().getKey(), 
-                           unsorted.peekHead().getValue());
+               case 3:  threesBucket.addTail(unsorted.peekHead().entry.key, 
+                           unsorted.peekHead().entry.value);
                         break;
-               case 4:  foursBucket.addTail(unsorted.peekHead().getKey(), 
-                           unsorted.peekHead().getValue());
+               case 4:  foursBucket.addTail(unsorted.peekHead().entry.key, 
+                           unsorted.peekHead().entry.value);
                         break;
-               case 5:  fivesBucket.addTail(unsorted.peekHead().getKey(), 
-                           unsorted.peekHead().getValue());
+               case 5:  fivesBucket.addTail(unsorted.peekHead().entry.key, 
+                           unsorted.peekHead().entry.value);
                         break;
-               case 6:  sixesBucket.addTail(unsorted.peekHead().getKey(), 
-                           unsorted.peekHead().getValue());
+               case 6:  sixesBucket.addTail(unsorted.peekHead().entry.key, 
+                           unsorted.peekHead().entry.value);
                         break;
-               case 7:  sevensBucket.addTail(unsorted.peekHead().getKey(), 
-                           unsorted.peekHead().getValue());
+               case 7:  sevensBucket.addTail(unsorted.peekHead().entry.key, 
+                           unsorted.peekHead().entry.value);
                         break;
-               case 8:  eightsBucket.addTail(unsorted.peekHead().getKey(), 
-                           unsorted.peekHead().getValue());
+               case 8:  eightsBucket.addTail(unsorted.peekHead().entry.key, 
+                           unsorted.peekHead().entry.value);
                         break;
-               default:  ninesBucket.addTail(unsorted.peekHead().getKey(), 
-                            unsorted.peekHead().getValue());   
+               default:  ninesBucket.addTail(unsorted.peekHead().entry.key, 
+                            unsorted.peekHead().entry.value);   
                         break;
             }
             unsorted.removeHead();  //remove head after sorting into bucket
@@ -122,20 +122,20 @@ public class Radix_Sort {
 
    public void emptyBuckets(SingleLinkedList_Entry ent) {
       while (!ent.isEmpty()) {
-         unsorted.addTail(ent.peekHead().getKey(), 
-            ent.peekHead().getValue());
-         ent.removeHead();
+         unsorted.addTail(ent.peekHead().entry.key,  //add node to tail
+            ent.peekHead().entry.value);
+         ent.removeHead();                           //remove head after sort
       }
    }
 
    public int numberSorted() {
-      numSorted = 0;
+      numSorted = 0;                             //nothing sorted yet
       SingleNode_Entry nodePtr = unsorted.head;
       if (nodePtr != null) {
-         numSorted = 1;
+         numSorted = 1;                         //one sorted
          while (nodePtr.next != null) {
-            numSorted++;
-            nodePtr = nodePtr.next;
+            numSorted++;                        //increment sorted
+            nodePtr = nodePtr.next;             //go to next node
          }
       }
       return numSorted;
