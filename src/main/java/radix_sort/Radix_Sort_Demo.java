@@ -67,14 +67,10 @@ public class Radix_Sort_Demo {
          numDigits = Integer.parseInt(sc.nextLine());  //first line of file
          
          while (sc.hasNextLine()) {  //while there are more lines
-            String[] token = sc.nextLine().split(",");   //split lines
+            String[] token = sc.nextLine().split(",", 2);
             String key = token[0];   
             if (token.length > 1) {  //skip END
-               String value;
-               if (token.length > 2) {
-                  value = token[1] + "," + token[2];
-               }
-               else value = token[1];
+               String value = token[1];
                unsorted.addTail(key, value);  //add tail node to linked list
             }
          }
